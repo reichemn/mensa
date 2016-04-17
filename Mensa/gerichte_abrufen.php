@@ -47,7 +47,7 @@ function sendToSQL($gerichtName, $gerichtPreisStudent, $datum)
             echo ("<br> " . $gerichtPreisStudent);
             $mysqli->query("INSERT INTO gericht VALUES(DEFAULT,'" . $gerichtName . "'," . $gerichtPreisStudent . ",'" . $datum . "')");
         } else {
-            echo("HAHAHAHAAH");
+           // echo("HAHAHAHAAH");
             $mysqli->query("UPDATE gericht SET datum='" . $datum . "' where gericht.gericht_name = \"" . $gerichtName . "\"");
         }
         
