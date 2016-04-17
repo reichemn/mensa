@@ -36,7 +36,7 @@ angular.module('app.routes', [])
 
   .state('danke', {
     url: '/page3',
-    templateUrl: 'templates/danke.html',
+    templateUrl: 'templates/danke.php',
     controller: 'dankeCtrl'
   })
 
