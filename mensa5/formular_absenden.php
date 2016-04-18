@@ -1,13 +1,24 @@
 <?php
 
-//echo($_GET["id"]."<br>");
-//echo(serialize($_POST));
+
+//define("debug", true);
+
+if(defined("debug")){
+echo($_GET["id"]."<br>");
+echo(serialize($_POST));
+echo($_POST["star"]);
+}
+
+
+$datenbank_ip = "127.0.0.1";
 
 $gerichtID = $_GET["id"];
 
 $mail = $_POST["e-mail"];
 $kommentar = $_POST["kommentar"];
 $menge = $_POST["menge"];
+$sterne = $_POST["star"];
+
 
 if(isset($_POST["salzig"]) && $_POST["salzig"] == "on"){
   $salzig = 1;
@@ -16,8 +27,8 @@ if(isset($_POST["salzig"]) && $_POST["salzig"] == "on"){
 }
 
 $datum = date("Y-m-d");
-$mysqli = new mysqli("172.18.0.171", "mensaDBuser", "passwort", "mensadb");
-echo("mail: ".substr($mail,-17));
+$mysqli = new mysqli($datenbank_ip, "mensaDBuser", "passwort", "mensadb");
+//echo("mail: ".substr($mail,-17));
 if(substr($mail,-17) == "oth-regensburg.de"){
   //userID, punkte und letzeBewertung abfragen
   
@@ -28,7 +39,7 @@ if(substr($mail,-17) == "oth-regensburg.de"){
     $punkte = $obj -> punkte;
     $letzteBewertung = $obj -> letzteBewertung;
    // echo ($letzteBewertung);
-   $mysqli->query("INSERT INTO bewertung VALUES(DEFAULT,".$userID.",".$gerichtID.",'".$datum."',".rand(1,5).",".$salzig.", NULL,".$menge.",'".$kommentar."')");   
+   $mysqli->query("INSERT INTO bewertung VALUES(DEFAULT,".$userID.",".$gerichtID.",'".$datum."',".$sterne.",".$salzig.", NULL,".$menge.",'".$kommentar."')");   
         
    if($datum != $letzteBewertung){
     $mysqli->query("UPDATE student SET letzteBewertung='" . $datum . "', punkte = ".($punkte + 1)." where userID = ".$userID);
@@ -38,12 +49,13 @@ if(substr($mail,-17) == "oth-regensburg.de"){
   }
   
 }else{
-   $mysqli->query("INSERT INTO bewertung VALUES(DEFAULT,NULL,".$gerichtID.",'".$datum."',".rand(1,5).",".$salzig.", NULL,".$menge.",'".$kommentar."')");
+   $mysqli->query("INSERT INTO bewertung VALUES(DEFAULT,NULL,".$gerichtID.",'".$datum."',".$sterne.",".$salzig.", NULL,".$menge.",'".$kommentar."')");
 
 }
-
+if(!defined("debug")){
 header("Refresh:0; url=index.html#page3");
-
+echo("Weiterleitung..");
+}
 
 
 

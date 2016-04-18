@@ -79,8 +79,9 @@ label.star:before {
 
 //$datum = "2016-04-16";
 $datum = date("Y-m-d");
+$datenbank_ip = "127.0.0.1";
 
-$mysqli = new mysqli("172.18.0.171", "mensaDBuser", "passwort", "mensadb");
+$mysqli = new mysqli($datenbank_ip, "mensaDBuser", "passwort", "mensadb");
    
    $i = 1; 
    $nameAkt;

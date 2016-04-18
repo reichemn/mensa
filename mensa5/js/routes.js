@@ -17,8 +17,11 @@ angular.module('app.routes', [])
   })
 
   .state('bewertung', {
-    url: '/page2',
-    templateUrl: 'templates/bewertung.php',
+    url: '/bewertung/:id',
+    templateUrl: function ($stateParams){
+    return 'templates/bewerten.php?id='+$stateParams.id;
+  },
+   // templateUrl: 'templates/bewertung.php',
     controller: 'bewertungCtrl'
   })
 
@@ -39,6 +42,8 @@ angular.module('app.routes', [])
     templateUrl: 'templates/danke.php',
     controller: 'dankeCtrl'
   })
+  
+  
 
 $urlRouterProvider.otherwise('/page1')
 
