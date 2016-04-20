@@ -25,7 +25,7 @@ if(isset($_POST["salzig"]) && $_POST["salzig"] == "on"){
 }
 
 $datum = date("Y-m-d");
-include 'templates/database_settings.php';
+include 'include/database_settings.php';
 $mysqli = new mysqli($datenbank_ip, $DBuser, $DBpasswort, $DBname);  
 //echo("mail: ".substr($mail,-17));
 if(substr($mail,-17) == "oth-regensburg.de"){

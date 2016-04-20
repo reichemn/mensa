@@ -29,7 +29,7 @@ function sendToSQL($gerichtName, $gerichtPreisStudent, $datum)
 {
    // $mysqli = new mysqli($datenbank_ip, "mensaDBuser", "passwort", "mensadb");
    
-   include 'templates/database_settings.php';
+   include 'include/database_settings.php';
 $mysqli = new mysqli($datenbank_ip, $DBuser, $DBpasswort, $DBname);  
     
     if ($mysqli->connect_errno) {

@@ -89,7 +89,7 @@ $hauptgerichtNummer = substr($_GET["id"],-1);
 echo("<h1>Fehler: Gericht nicht gefunden! </h1>");
             return;
 }
-include 'database_settings.php';
+include '../include/database_settings.php';
 $mysqli = new mysqli($datenbank_ip, $DBuser, $DBpasswort, $DBname);
    
    $i = 1; 
