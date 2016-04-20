@@ -81,7 +81,7 @@ label.star:before {
 
 //$datum = "2016-04-16";
 $datum = date("Y-m-d");
-$datenbank_ip = "127.0.0.1";
+
 
 if(substr($_GET["id"],0,2)=="hg"||substr($_GET["id"],0,2)=="HG"){
 $hauptgerichtNummer = substr($_GET["id"],-1);
@@ -89,8 +89,8 @@ $hauptgerichtNummer = substr($_GET["id"],-1);
 echo("<h1>Fehler: Gericht nicht gefunden! </h1>");
             return;
 }
-
-$mysqli = new mysqli($datenbank_ip, "mensaDBuser", "passwort", "mensadb");
+include 'database_settings.php';
+$mysqli = new mysqli($datenbank_ip, $DBuser, $DBpasswort, $DBname);
    
    $i = 1; 
    $nameAkt;

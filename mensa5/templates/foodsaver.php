@@ -37,8 +37,8 @@ label.star:before {
 $datum = date("Y-m-d");
 $datenbank_ip = "127.0.0.1";
 
-$mysqli = new mysqli($datenbank_ip, "mensaDBuser", "passwort", "mensadb");
-   
+include 'database_settings.php';
+$mysqli = new mysqli($datenbank_ip, $DBuser, $DBpasswort, $DBname);  
    
       $result = $mysqli->query("SELECT gericht.gerichtID, gericht.gericht_name FROM gericht where gericht.datum = '".$datum."'");  
    

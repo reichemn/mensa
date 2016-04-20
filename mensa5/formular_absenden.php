@@ -10,8 +10,6 @@ echo($_POST["star"]);
 }
 
 
-$datenbank_ip = "127.0.0.1";
-
 $gerichtID = $_GET["id"];
 
 $mail = $_POST["e-mail"];
@@ -27,7 +25,8 @@ if(isset($_POST["salzig"]) && $_POST["salzig"] == "on"){
 }
 
 $datum = date("Y-m-d");
-$mysqli = new mysqli($datenbank_ip, "mensaDBuser", "passwort", "mensadb");
+include 'templates/database_settings.php';
+$mysqli = new mysqli($datenbank_ip, $DBuser, $DBpasswort, $DBname);  
 //echo("mail: ".substr($mail,-17));
 if(substr($mail,-17) == "oth-regensburg.de"){
   //userID, punkte und letzeBewertung abfragen
